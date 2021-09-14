@@ -3,7 +3,7 @@
 @section('content')
     <h1>Modifier Joueur</h1>
     <br>
-    <form action="{{route('joueurs.update', $article->id)}}" method="post">
+    <form action="{{route('joueurs.update', $joueur->id)}}" method="post">
         @csrf
         @method('PUT')
         Nom: <input type="text" name="nom" value="{{$joueur->nom}}">

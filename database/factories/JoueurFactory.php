@@ -29,7 +29,7 @@ class JoueurFactory extends Factory
             "age" =>$this->faker->numberBetween(16, 35),
             "telephone" =>$this->faker->phoneNumber(),
             "email" =>$this->faker->email(),
-            "genre" =>$this->faker->title('male'|'female'),
+            "genre" =>$this->faker->randomElement($array = array ("M","F")),
             "paysOrigine" =>$this->faker->country(),
             "role_id" =>$this->faker->numberBetween(1, count(Role::all())),
             "equipe_id" =>$this->faker->numberBetween(1, count(Equipe::all()))

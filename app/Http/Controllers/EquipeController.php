@@ -28,11 +28,8 @@ class EquipeController extends Controller
      */
     public function create()
     {
-        $equipes = Equipe::all();
-        $roles = Role::all();
-        $joueurs = Joueur::all();
         $continents = Continent::all();
-        return view('backoffice.equipes.create', compact('equipes', 'joueurs', 'roles', 'continents'));
+        return view('backoffice.equipes.create', compact('continents'));
     }
 
     /**

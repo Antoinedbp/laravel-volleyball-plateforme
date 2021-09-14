@@ -7,6 +7,7 @@ use App\Models\Joueur;
 use App\Models\Photo;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class JoueurController extends Controller
 {
@@ -29,9 +30,8 @@ class JoueurController extends Controller
     public function create()
     {
         $roles = Role::all();
-        $photos = Photo::all();
         $equipes = Equipe::all();
-        return view('backoffice.joueurs.create', compact('roles', "photos", 'equipes'));
+        return view('backoffice.joueurs.create', compact('roles', 'equipes'));
     }
 
     /**
@@ -65,9 +65,11 @@ class JoueurController extends Controller
         $joueur->role_id = $request->role_id;
         $joueur->equipe_id = $request->equipe_id;
         $joueur->save();
+
+        $request->file("url")->storePublicly("img","public");
         $photo = new Photo;
         $photo->url = $request->file('url')->hashName();
-        $photo->joueur_id = $request->id;
+        $photo->joueur_id = $joueur->id;
         $photo->save();
         return redirect()->route("joueurs.index")->with('message', 'added');
     }
@@ -91,7 +93,9 @@ class JoueurController extends Controller
      */
     public function edit(Joueur $joueur)
     {
-        return view('backoffice.joueurs.edit', compact('joueur'));
+        $roles = Role::all();
+        $equipes = Equipe::all();
+        return view('backoffice.joueurs.edit', compact('joueur', 'roles', 'equipes'));
     }
 
     /**
@@ -124,11 +128,13 @@ class JoueurController extends Controller
         $joueur->paysOrigine = $request->paysOrigine;
         $joueur->role_id = $request->role_id;
         $joueur->equipe_id = $request->equipe_id;
+
+        Storage::disk("public")->delete("img/".$joueur->url);
+        $joueur->url =  $request->file('url');
+        $joueur->url->save();
         $joueur->save();
-        $photo = new Photo;
-        $photo->url = $request->file('url')->hashName();
-        $photo->joueur_id = $request->id;
-        $photo->save();
+
+        $request->file("url")->storePublicly("img","public");
         return redirect()->route("joueurs.index")->with('message', 'added');
     }
 
@@ -140,6 +146,8 @@ class JoueurController extends Controller
      */
     public function destroy(Joueur $joueur)
     {
+        Storage::disk("public")->delete("img/".$joueur->url);
+        $joueur->url->delete();
         $joueur->delete();
         return redirect()->route('joueurs.index');
     }

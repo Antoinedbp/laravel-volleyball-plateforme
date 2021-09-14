@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="card" style="width: 18rem;">
+        
         <div class="card-body">
             <h3 class="card-title">Club: {{$equipe->nomClub}}</h3>
             <h3 class="card-title">Ville: {{$equipe->ville}}</h3>
