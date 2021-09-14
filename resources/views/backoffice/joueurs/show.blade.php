@@ -11,7 +11,7 @@
             <h3 class="card-title">{{$joueur->genre}}</h3>
             <h3 class="card-title">{{$joueur->paysOrigine}}</h3>
             <h3 class="card-title">{{$joueur->role->nomRole}}</h3>
-            <h3 class="card-title">{{$joueur->equipe_id}}</h3>
+            <h3 class="card-title">{{$joueur->equipe->nomClub}}</h3>
             <form action="{{route('joueurs.destroy', $joueur->id)}}" method="post">
                 @csrf
                 @method('DELETE')

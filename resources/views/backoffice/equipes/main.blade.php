@@ -13,7 +13,7 @@
         <th scope="col">Ville</th>
         <th scope="col">Pays</th>
         <th scope="col">Nombre Max</th>
-        <th scope="col">continent_ID</th>
+        <th scope="col">Continent</th>
         <th scope="col">Edit</th>
         <th scope="col">Show</th>
         <th scope="col">Delete</th>
@@ -35,7 +35,7 @@
             <th>{{$item->pays}}</th>
             
             <th>{{$item->nbrMax}}</th>
-            <th>{{$item->continent_id}}</th>
+            <th>{{$item->continent->nomContinent}}</th>
             <th>
                 <a href="{{route('equipes.edit', $item->id)}}" class="btn btn-primary">Edit</a>
             </th>

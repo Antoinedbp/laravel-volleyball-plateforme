@@ -35,11 +35,11 @@
         </div>
         <div class="mb-3 m-5">
             <label for="exampleInputEmail1" class="form-label">Role_ID</label>
-            <input type="file" name="role_id" class="form-control" value="{{old('role_id')}}">
+            <input type="number" name="role_id" class="form-control" value="{{old('role_id')}}">
         </div>
         <div class="mb-3 m-5">
             <label for="exampleInputEmail1" class="form-label">Equipe_ID</label>
-            <input type="file" name="equipe_id" class="form-control" value="{{old('equipe_id')}}">
+            <input type="number" name="equipe_id" class="form-control" value="{{old('equipe_id')}}">
         </div>
         <button type="submit" class="btn btn-primary m-5">Submit</button>
     </form>

@@ -41,8 +41,8 @@
             <th>{{$item->email}}</th>
             <th>{{$item->genre}}</th>
             <th>{{$item->paysOrigine}}</th>
-            <th>{{$item->role_id}}</th> 
-            <th>{{$item->equipe_id}}</th> 
+            <th>{{$item->role->nomRole}}</th> 
+            <th>{{$item->equipe->nomClub}}</th> 
             <th>
                 <a href="{{route('joueurs.edit', $item->id)}}" class="btn btn-primary">Edit</a>
             </th>

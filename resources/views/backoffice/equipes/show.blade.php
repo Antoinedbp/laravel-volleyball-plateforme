@@ -7,7 +7,7 @@
             <h3 class="card-title">Ville: {{$equipe->ville}}</h3>
             <h3 class="card-title">Pays: {{$equipe->pays}}</h3>
             <h3 class="card-title">Nbr Max: {{$equipe->nbrMax}}</h3>
-            <h3 class="card-title">Continent: {{$equipe->continent_id}}</h3>
+            <h3 class="card-title">Continent: {{$equipe->continent->nomContinent}}</h3>
             <form action="{{route('equipes.destroy', $equipe->id)}}" method="post">
                 @csrf
                 @method('DELETE')
